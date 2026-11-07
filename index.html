@@ -498,7 +498,38 @@ let balance = 10000;
 let btcBalance = 0;
 let mode = "buy";
 
-function format(n) {
+function format(n) {// R1 LIVE MARKET PRICES
+async function updateLivePrices() {
+    const symbols = ["BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT"];
+
+    try {
+        const results = await Promise.all(
+            symbols.map(async (symbol) => {
+                const response = await fetch(
+                    `https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch price");
+                }
+
+                return await response.json();
+            })
+        );
+
+        prices.BTC = Number(results[0].price);
+        prices.ETH = Number(results[1].price);
+        prices.BNB = Number(results[2].price);
+        prices.SOL = Number(results[3].price);
+
+        updatePrices();
+
+        console.log("R1 live prices updated successfully");
+
+    } catch (error) {
+        console.error("R1 price connection error:", error);
+    }
+}
     return Number(n).toLocaleString("en-US", {
         maximumFractionDigits: 2
     });
