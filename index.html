@@ -50,3 +50,618 @@ button {
 </main>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R1 Exchange</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #07090d;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    border-bottom: 1px solid #20272d;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 900;
+    color: #00ffad;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #00ffad;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: #aab3bd;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+nav a:hover {
+    color: #00ffad;
+}
+
+.login {
+    background: #00ffad;
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.container {
+    padding: 35px 5%;
+}
+
+h1 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #89939e;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.card {
+    background: #10151d;
+    border: 1px solid #202c35;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.card small {
+    color: #89939e;
+}
+
+.price {
+    font-size: 23px;
+    margin: 12px 0;
+    font-weight: bold;
+}
+
+.green {
+    color: #00ffad;
+}
+
+.red {
+    color: #ff526c;
+}
+
+.section {
+    background: #10151d;
+    border: 1px solid #202c35;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 25px;
+}
+
+.section h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 17px 10px;
+    border-bottom: 1px solid #20272d;
+}
+
+th {
+    color: #89939e;
+    font-size: 13px;
+}
+
+.coin {
+    font-weight: bold;
+}
+
+.trade-layout {
+    display: grid;
+    grid-template-columns: 1fr 330px;
+    gap: 20px;
+}
+
+.chart {
+    height: 330px;
+    background: #090e16;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.chart canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #202832;
+    color: white;
+    cursor: pointer;
+}
+
+.tabs button.active {
+    background: #00ffad;
+    color: black;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0 18px;
+    border: 1px solid #303a45;
+    border-radius: 6px;
+    background: #080d14;
+    color: white;
+    outline: none;
+}
+
+.trade-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 7px;
+    background: #00ffad;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.trade-button.sell {
+    background: #ff526c;
+    color: white;
+}
+
+footer {
+    padding: 30px;
+    text-align: center;
+    color: #68737e;
+    border-top: 1px solid #20272d;
+}
+
+@media(max-width:850px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trade-layout {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        display: none;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+}
+
+@media(max-width:450px) {
+    .container {
+        padding: 20px 4%;
+    }
+
+    .cards {
+        gap: 8px;
+    }
+
+    .card {
+        padding: 14px;
+    }
+
+    .price {
+        font-size: 18px;
+    }
+
+    th, td {
+        padding: 12px 5px;
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">R1</div>
+
+    <nav>
+        <a href="#markets">Markets</a>
+        <a href="#trade">Trade</a>
+        <a href="#portfolio">Portfolio</a>
+    </nav>
+
+    <button class="login" onclick="alert('Account registration coming soon')">
+        Login
+    </button>
+</header>
+
+<div class="container">
+
+<h1>Trade Smarter with R1</h1>
+<p class="subtitle">
+Your gateway to the cryptocurrency market.
+</p>
+
+<div class="cards">
+
+    <div class="card">
+        <small>Bitcoin BTC</small>
+        <div class="price" id="btc">$67,450</div>
+        <span class="green">BTC / USDT</span>
+    </div>
+
+    <div class="card">
+        <small>Ethereum ETH</small>
+        <div class="price" id="eth">$3,450</div>
+        <span class="green">ETH / USDT</span>
+    </div>
+
+    <div class="card">
+        <small>BNB</small>
+        <div class="price" id="bnb">$620</div>
+        <span class="green">BNB / USDT</span>
+    </div>
+
+    <div class="card">
+        <small>Solana SOL</small>
+        <div class="price" id="sol">$145</div>
+        <span class="green">SOL / USDT</span>
+    </div>
+
+</div>
+
+<div class="section" id="markets">
+
+<h2>Markets</h2>
+
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Price</th>
+<th>Change</th>
+<th>Pair</th>
+</tr>
+</thead>
+
+<tbody id="marketTable">
+<tr>
+<td class="coin">Bitcoin</td>
+<td id="table-btc">$67,450</td>
+<td class="green">+2.4%</td>
+<td>BTC/USDT</td>
+</tr>
+
+<tr>
+<td class="coin">Ethereum</td>
+<td id="table-eth">$3,450</td>
+<td class="green">+1.8%</td>
+<td>ETH/USDT</td>
+</tr>
+
+<tr>
+<td class="coin">BNB</td>
+<td id="table-bnb">$620</td>
+<td class="red">-0.8%</td>
+<td>BNB/USDT</td>
+</tr>
+
+<tr>
+<td class="coin">Solana</td>
+<td id="table-sol">$145</td>
+<td class="green">+4.2%</td>
+<td>SOL/USDT</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="trade-layout" id="trade">
+
+<div class="section">
+
+<h2>BTC / USDT</h2>
+
+<div class="chart">
+<canvas id="chart"></canvas>
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Trade BTC</h2>
+
+<div class="tabs">
+<button id="buyTab" class="active" onclick="setMode('buy')">
+Buy
+</button>
+
+<button id="sellTab" onclick="setMode('sell')">
+Sell
+</button>
+</div>
+
+<label>Available balance</label>
+<div class="price green" id="balance">10,000 USDT</div>
+
+<label>Amount (USDT)</label>
+<input type="number" id="amount" placeholder="Enter amount">
+
+<label>Estimated BTC</label>
+<input type="text" id="quantity" readonly placeholder="0.00000000">
+
+<button class="trade-button" id="tradeBtn" onclick="trade()">
+Buy BTC
+</button>
+
+<p id="message" style="margin-top:15px;color:#00ffad"></p>
+
+</div>
+</div>
+
+<div class="section" id="portfolio">
+<h2>My Portfolio</h2>
+<p>USDT Balance: <span class="green" id="portfolioBalance">10,000 USDT</span></p>
+<p style="margin-top:15px">
+BTC Balance: <span id="btcBalance">0 BTC</span>
+</p>
+</div>
+
+<div class="section">
+<h2>Recent Trades</h2>
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Amount</th>
+<th>Asset</th>
+</tr>
+</thead>
+
+<tbody id="history">
+<tr>
+<td colspan="3" style="color:#89939e">
+No trades yet
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+<footer>
+R1 Exchange © 2026 | Trade Smarter
+</footer>
+
+<script>
+
+let prices = {
+    BTC: 67450,
+    ETH: 3450,
+    BNB: 620,
+    SOL: 145
+};
+
+let balance = 10000;
+let btcBalance = 0;
+let mode = "buy";
+
+function format(n) {
+    return Number(n).toLocaleString("en-US", {
+        maximumFractionDigits: 2
+    });
+}
+
+function updatePrices() {
+    document.getElementById("btc").textContent = "$" + format(prices.BTC);
+    document.getElementById("eth").textContent = "$" + format(prices.ETH);
+    document.getElementById("bnb").textContent = "$" + format(prices.BNB);
+    document.getElementById("sol").textContent = "$" + format(prices.SOL);
+
+    ["btc","eth","bnb","sol"].forEach((coin) => {
+        document.getElementById("table-" + coin).textContent =
+            "$" + format(prices[coin.toUpperCase()]);
+    });
+}
+
+function setMode(value) {
+    mode = value;
+
+    document.getElementById("buyTab").classList.toggle("active", value === "buy");
+    document.getElementById("sellTab").classList.toggle("active", value === "sell");
+
+    const btn = document.getElementById("tradeBtn");
+    btn.textContent = value === "buy" ? "Buy BTC" : "Sell BTC";
+    btn.classList.toggle("sell", value === "sell");
+
+    document.getElementById("message").textContent = "";
+}
+
+document.getElementById("amount").addEventListener("input", function() {
+    let amount = Number(this.value);
+    let quantity = amount / prices.BTC;
+
+    document.getElementById("quantity").value =
+        Number.isFinite(quantity) && quantity > 0
+        ? quantity.toFixed(8)
+        : "";
+});
+
+function updatePortfolio() {
+    document.getElementById("balance").textContent =
+        format(balance) + " USDT";
+
+    document.getElementById("portfolioBalance").textContent =
+        format(balance) + " USDT";
+
+    document.getElementById("btcBalance").textContent =
+        btcBalance.toFixed(8) + " BTC";
+}
+
+function trade() {
+    let amount = Number(document.getElementById("amount").value);
+    let quantity = amount / prices.BTC;
+    let msg = document.getElementById("message");
+
+    if (!amount || amount <= 0) {
+        msg.textContent = "Enter a valid amount.";
+        return;
+    }
+
+    if (mode === "buy") {
+
+        if (amount > balance) {
+            msg.textContent = "Insufficient USDT balance.";
+            return;
+        }
+
+        balance -= amount;
+        btcBalance += quantity;
+
+    } else {
+
+        if (quantity > btcBalance) {
+            msg.textContent = "Insufficient BTC balance.";
+            return;
+        }
+
+        btcBalance -= quantity;
+        balance += amount;
+    }
+
+    let row = document.createElement("tr");
+
+    row.innerHTML = `
+        <td>${mode.toUpperCase()}</td>
+        <td>${format(amount)} USDT</td>
+        <td>BTC</td>
+    `;
+
+    const history = document.getElementById("history");
+
+    if (history.children[0] &&
+        history.children[0].children.length === 1) {
+        history.innerHTML = "";
+    }
+
+    history.prepend(row);
+
+    updatePortfolio();
+
+    msg.textContent = "Demo trade completed successfully!";
+
+    document.getElementById("amount").value = "";
+    document.getElementById("quantity").value = "";
+}
+
+updatePrices();
+updatePortfolio();
+
+// Illustrative chart
+const canvas = document.getElementById("chart");
+const ctx = canvas.getContext("2d");
+
+function drawChart() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+
+    ctx.scale(dpr, dpr);
+
+    const w = rect.width;
+    const h = rect.height;
+
+    ctx.clearRect(0, 0, w, h);
+
+    ctx.strokeStyle = "#202c35";
+    ctx.lineWidth = 1;
+
+    for (let i = 1; i < 5; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, h * i / 5);
+        ctx.lineTo(w, h * i / 5);
+        ctx.stroke();
+    }
+
+    ctx.beginPath();
+
+    for (let i = 0; i <= 100; i++) {
+        let x = i / 100 * w;
+        let y = h * 0.5 +
+            Math.sin(i * 0.2) * 25 +
+            Math.sin(i * 0.07) * 30 +
+            Math.cos(i * 0.4) * 8;
+
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+
+    ctx.strokeStyle = "#00ffad";
+    ctx.lineWidth = 2;
+    ctx.shadowColor = "#00ffad";
+    ctx.shadowBlur = 8;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+}
+
+drawChart();
+window.addEventListener("resize", drawChart);
+
+</script>
+
+</body>
+</html>
