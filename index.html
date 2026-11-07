@@ -683,7 +683,12 @@ function drawChart() {
 
     ctx.strokeStyle = "#00ffad";
     ctx.lineWidth = 2;
-    ctx.shadowColor = "#00ffad";
+ html>
+updatePrices();
+updatePortfolio();
+
+updateLivePrices();
+setInterval(updateLivePrices, 10000);   ctx.shadowColor = "#00ffad";
     ctx.shadowBlur = 8;
     ctx.stroke();
     ctx.shadowBlur = 0;
@@ -695,9 +700,4 @@ window.addEventListener("resize", drawChart);
 </script>
 
 </body>
-</html>
-updatePrices();
-updatePortfolio();
-
-updateLivePrices();
-setInterval(updateLivePrices, 10000);
+</
